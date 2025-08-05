@@ -1,0 +1,41 @@
+# IDE specific
+.idea/
+.vscode/
+.vscode
+.vscode/*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/*
+__pycache__/
+
+*.py[cod]
+*$py.class
+*.pyc
+*~
+
+*.sqlite3
+
+.venv
+.venv/*
+.env
+.env/*
+
+env/
+venv/
+
+ENV/
+env.bak/
+venv.bak/
+
+/static
+### Project specific ###
+settings_local.py
+config.py
+.yui
+reference_solution
+
+*.code-workspace
+*.http
+
+### OS specific ###
+.DS_Store
