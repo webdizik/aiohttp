@@ -1,0 +1,7 @@
+.venv/
+test-html/
+*.http
+*.json
+*.md
+*.code-workspace
+test

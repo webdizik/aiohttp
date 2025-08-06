@@ -1,7 +1,7 @@
 import datetime
 import os
 
-from sqlalchemy import DateTime, Integer, String, func
+from sqlalchemy import DateTime, ForeignKey, Integer, String, func
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -28,14 +28,22 @@ class Base(DeclarativeBase, AsyncAttrs):
         return {"id": self.id}
 
 
+class Author(Base):
+
+    __tablename__ = "authors"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, unique=True)
+    name: Mapped[str] = mapped_column(String, unique=True)
+
+
 class Post(Base):
 
     __tablename__ = "posts"
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    title: Mapped[str] = mapped_column(String)
-    description: Mapped[str] = mapped_column(String)
-    ad_author: Mapped[str] = mapped_column(String)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, unique=True)
+    id_authors = mapped_column(Integer, ForeignKey("authors.id"), nullable=False)
+    title: Mapped[str] = mapped_column(String, nullable=False)
+    description: Mapped[str] = mapped_column(String, nullable=True)
     creation_time: Mapped[datetime.datetime] = mapped_column(
         DateTime,
         server_default=func.now()
